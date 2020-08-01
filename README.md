@@ -12,6 +12,6 @@ Also a VM will be provided, so shaders will be able to run on CPU or GPU (by tra
 
 Shader caching will also be provided by utilities or Database. 
 
-## Syntax Proposals
+## Proposals
 
-1. [SyntaxProposals.md](https://github.com/UniversalShading/spec/blob/master/SyntaxProposals.md)
+1. [Syntax Proposals](https://github.com/UniversalShading/spec/blob/master/SyntaxProposals.md)
