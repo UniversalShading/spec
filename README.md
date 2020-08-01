@@ -10,7 +10,7 @@ This is the main goal of the USL language.
 
 Also a VM will be provided, so shaders will be able to run on CPU or GPU (by translated to GLSL, HLSL, MSL, SPIR-V...). USL will also provide library machanizm like Metal or better than Metal. 
 
-Shader caching will also be provided by utilities or Database. 
+Shader caching will also be provided by utilities or Database. Shaders can also be ASCII or binary...
 
 ## Proposals
 
