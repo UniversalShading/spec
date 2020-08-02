@@ -29,4 +29,18 @@ vertex ColorInOut (in: Vertex as stage_in, uniforms: Uniform in buffer(0)) {
 }
 ```
 
+or 
+
+```Swift
+[ShaderName]
+vertex ColorInOut (in: Vertex as stage_in, uniforms: Uniform(0)) {
+  var out: ColorInOut
+  
+  let position = float4(in.position, 1.0)
+  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
+  out.texCoord = in.texCoord
+  
+  ^ out
+}
+```
 I'll update the syntax proposal over time.
