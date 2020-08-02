@@ -18,7 +18,7 @@ vertex ColorInOut ShaderName(Vertex in [[stage_in]],
 USL (Universal Shading Language):
 ```Swift
 [ShaderName]
-vertex ColorInOut (in: Vertex [stage_in], uniforms: Uniform [buffer(0)]) {
+vertex ColorInOut (in: Vertex as stage_in, uniforms: Uniform in buffer(0)) {
   var out: ColorInOut
   
   let position = float4(in.position, 1.0)
