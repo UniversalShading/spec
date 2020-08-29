@@ -43,4 +43,14 @@ vertex ColorInOut (in: Vertex as stage_in, uniforms: Uniform(0)) {
   ^ out
 }
 ```
+
+Struct example:
+
+```Swift
+struct StructName {
+  float4 position : POSITION;
+  float2 texCoord : TEXCOORD0;
+};
+```
+
 I'll update the syntax proposal over time.
