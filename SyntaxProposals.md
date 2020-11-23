@@ -44,6 +44,19 @@ vertex ColorInOut (in: Vertex as stage_in, uniforms: Uniform(0)) {
 }
 ```
 
+Alternatives:
+
+```Swift
+[vertex]
+ShaderName: Vertex in as stage_in, Uniform(0) uniforms {
+
+}
+
+vertex ShaderName: Vertex in as stage_in, Uniform(0) uniforms {
+  sum: a, b ^ a + b
+}
+```
+
 Struct example:
 
 ```Swift
