@@ -57,6 +57,33 @@ vertex ShaderName: Vertex in as stage_in, Uniform(0) uniforms {
 }
 ```
 
+```Swift
+[phong]
+- vertex in: Vertex as stage_in, uniforms: Uniform(0)) {
+  var out: ColorInOut
+  
+  let position = float4(in.position, 1.0)
+  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
+  out.texCoord = in.texCoord
+  
+  ^ out
+}
+- fragment in:       ColorInOut as stage_in,
+           uniforms: Uniform(0),
+           colorMap: texture2d<half>(0)) {
+
+  let colorSampler = sampler(mip_filter::linear,
+                             mag_filter::linear,
+                             min_filter::linear)
+
+  let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
+  
+  ^ float4(colorSample)
+}
+
+```
+(phong's vertex and fragment shaders are groupped, so accessing them, groupping them makes things simplier, syntax may change in the future)
+
 Struct example:
 
 ```Swift
