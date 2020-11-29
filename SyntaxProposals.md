@@ -54,8 +54,8 @@ ColorInOut vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) {
 
 @fragment 
 float4 fragShader(in:       ColorInOut as stage_in,
-                           uniforms: Uniform(0),
-                           colorMap: texture2d<half>(0)) {
+                  uniforms: Uniform(0),
+                  colorMap: texture2d<half>(0)) {
 
   let colorSampler = sampler(.linear, linear, .linear)
   let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
