@@ -15,8 +15,8 @@ Compiler is in progress, so this syntax may be changed over time. The whole lang
 Referenced Metal Shader (Vertex)
 
 ```metal
-vertex ColorInOut vertexShader(Vertex in [[stage_in]],
-                               constant Uniforms & uniforms [[ buffer(0) ]]) {
+vertex ColorInOut vertexShader(Vertex             in [[stage_in]],
+                               constant Uniforms& uniforms [[ buffer(0) ]]) {
     ColorInOut out;
 
     float4 position = float4(in.position, 1.0);
@@ -26,9 +26,9 @@ vertex ColorInOut vertexShader(Vertex in [[stage_in]],
     return out;
 }
 
-fragment float4 fragmentShader(ColorInOut in [[stage_in]],
-                               constant Uniforms & uniforms [[ buffer(0) ]],
-                               texture2d<half> colorMap     [[ texture(0) ]]) {
+fragment float4 fragmentShader(ColorInOut         in [[stage_in]],
+                               constant Uniforms& uniforms [[ buffer(0) ]],
+                               texture2d<half>    colorMap [[ texture(0) ]]) {
     constexpr sampler colorSampler(mip_filter::linear,
                                    mag_filter::linear,
                                    min_filter::linear);
