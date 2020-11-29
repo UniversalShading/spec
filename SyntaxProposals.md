@@ -3,10 +3,8 @@
 Referenced Metal Shader (Vertex)
 
 ```metal
-vertex 
-ColorInOut 
-ShaderName(Vertex in [[stage_in]],
-           constant Uniforms & uniforms [[ buffer(0) ]]) {
+vertex ColorInOut ShaderName(Vertex in [[stage_in]],
+                             constant Uniforms & uniforms [[ buffer(0) ]]) {
     ColorInOut out;
 
     float4 position = float4(in.position, 1.0);
@@ -19,9 +17,7 @@ ShaderName(Vertex in [[stage_in]],
 
 USL (Universal Shading Language):
 ```Swift
-vertex
-ColorInOut
-vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) {
+vertex ColorInOut vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) {
   var out = ColorInOut()
   
   let position = float4(in.position, 1.0)
@@ -31,13 +27,14 @@ vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) {
   ^ out
 }
 
-fragment
-float4
-fragShader(in:       ColorInOut as stage_in,
-           uniforms: Uniform(0),
-           colorMap: texture2d<half>(0)) {
+fragment float4 fragShader(in:       ColorInOut as stage_in,
+                           uniforms: Uniform(0),
+                           colorMap: texture2d<half>(0)) {
 
-  let colorSampler = sampler(.linear, .linear, .linear)
+  let colorSampler = sampler(mip_filter::linear,
+                             mag_filter::linear,
+                             min_filter::linear)
+
   let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
   
   ^ float4(colorSample)
