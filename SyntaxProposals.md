@@ -13,6 +13,18 @@ vertex ColorInOut ShaderName(Vertex in [[stage_in]],
 
     return out;
 }
+
+fragment float4 fragmentShader(ColorInOut in [[stage_in]],
+                               constant Uniforms & uniforms [[ buffer(0) ]],
+                               texture2d<half> colorMap     [[ texture(0) ]]) {
+    constexpr sampler colorSampler(mip_filter::linear,
+                                   mag_filter::linear,
+                                   min_filter::linear);
+
+    half4 colorSample   = colorMap.sample(colorSampler, in.texCoord.xy);
+
+    return float4(colorSample);
+}
 ```
 
 USL (Universal Shading Language):
@@ -31,10 +43,7 @@ fragment float4 fragShader(in:       ColorInOut as stage_in,
                            uniforms: Uniform(0),
                            colorMap: texture2d<half>(0)) {
 
-  let colorSampler = sampler(mip_filter::linear,
-                             mag_filter::linear,
-                             min_filter::linear)
-
+  let colorSampler = sampler(.linear, linear, .linear)
   let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
   
   ^ float4(colorSample)
