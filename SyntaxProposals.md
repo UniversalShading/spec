@@ -3,8 +3,10 @@
 Referenced Metal Shader (Vertex)
 
 ```metal
-vertex ColorInOut ShaderName(Vertex in [[stage_in]],
-                             constant Uniforms & uniforms [[ buffer(0) ]]) {
+vertex 
+ColorInOut 
+ShaderName(Vertex in [[stage_in]],
+           constant Uniforms & uniforms [[ buffer(0) ]]) {
     ColorInOut out;
 
     float4 position = float4(in.position, 1.0);
