@@ -86,6 +86,31 @@ fragShader(in:       ColorInOut as stage_in,
   
   return float4(colorSample)
 }
+
+// or
+
+@vertex 
+vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) -> ColorInOut {
+  var out = ColorInOut()
+  
+  let position = float4(in.position, 1.0)
+  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
+  out.texCoord = in.texCoord
+  
+  return out
+}
+
+@fragment 
+fragShader(in:       ColorInOut as stage_in,
+           uniforms: Uniform(0),
+           colorMap: texture2d<half>(0)) -> float4 {
+
+  let colorSampler = sampler(.linear, linear, .linear)
+  let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
+  
+  return float4(colorSample)
+}
+
 ```
 
 or
