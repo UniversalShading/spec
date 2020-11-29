@@ -42,30 +42,6 @@ fragment float4 fragmentShader(ColorInOut         in [[stage_in]],
 USL (Universal Shading Language):
 ```Swift
 @vertex 
-ColorInOut vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) {
-  var out = ColorInOut()
-  
-  let position = float4(in.position, 1.0)
-  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
-  out.texCoord = in.texCoord
-  
-  ^ out
-}
-
-@fragment 
-float4 fragShader(in:       ColorInOut as stage_in,
-                  uniforms: Uniform(0),
-                  colorMap: texture2d<half>(0)) {
-
-  let colorSampler = sampler(.linear, linear, .linear)
-  let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
-  
-  return float4(colorSample)
-}
-
-// or
-
-@vertex 
 vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) -> ColorInOut {
   var out = ColorInOut()
   
@@ -87,15 +63,6 @@ fragShader(in:       ColorInOut as stage_in,
   return float4(colorSample)
 }
 
-```
-
-Struct example:
-
-```Swift
-struct StructName {
-  float4 position : POSITION;
-  float2 texCoord : TEXCOORD0;
-};
 ```
 
 I'll update the syntax proposal over time.
