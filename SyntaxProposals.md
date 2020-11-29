@@ -1,5 +1,17 @@
 # Proposed Syntax 
 
+---
+
+#### Goals
+
+* Easy to read
+* Easy to write
+* Easy to remember
+
+Compiler is in progress, so this syntax may be changed over time. The whole language syntax and rules will be published later
+
+---
+
 Referenced Metal Shader (Vertex)
 
 ```metal
