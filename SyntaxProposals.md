@@ -60,30 +60,6 @@ float4 fragShader(in:       ColorInOut as stage_in,
   let colorSampler = sampler(.linear, linear, .linear)
   let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
   
-  ^ float4(colorSample)
-}
-
-// or
-
-@vertex 
-vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)): ColorInOut {
-  var out = ColorInOut()
-  
-  let position = float4(in.position, 1.0)
-  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
-  out.texCoord = in.texCoord
-  
-  return out
-}
-
-@fragment 
-fragShader(in:       ColorInOut as stage_in,
-           uniforms: Uniform(0),
-           colorMap: texture2d<half>(0)): float4 {
-
-  let colorSampler = sampler(.linear, linear, .linear)
-  let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
-  
   return float4(colorSample)
 }
 
@@ -97,7 +73,7 @@ vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) -> ColorInOut {
   out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
   out.texCoord = in.texCoord
   
-  return out
+  return out 
 }
 
 @fragment 
@@ -112,76 +88,6 @@ fragShader(in:       ColorInOut as stage_in,
 }
 
 ```
-
-or
-
-```Swift
-[ShaderName]
-vertex ColorInOut (in: Vertex as stage_in, uniforms: Uniform in buffer(0)) {
-  var out: ColorInOut
-  
-  let position = float4(in.position, 1.0)
-  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
-  out.texCoord = in.texCoord
-  
-  ^ out
-}
-```
-
-or 
-
-```Swift
-[ShaderName]
-vertex ColorInOut (in: Vertex as stage_in, uniforms: Uniform(0)) {
-  var out: ColorInOut
-  
-  let position = float4(in.position, 1.0)
-  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
-  out.texCoord = in.texCoord
-  
-  ^ out
-}
-```
-
-Alternatives:
-
-```Swift
-[vertex]
-ShaderName: Vertex in as stage_in, Uniform(0) uniforms {
-
-}
-
-vertex ShaderName: Vertex in as stage_in, Uniform(0) uniforms {
-  sum: a, b ^ a + b
-}
-```
-
-```Swift
-[phong]
-- vertex in: Vertex as stage_in, uniforms: Uniform(0)) {
-  var out: ColorInOut
-  
-  let position = float4(in.position, 1.0)
-  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
-  out.texCoord = in.texCoord
-  
-  ^ out
-}
-- fragment in:       ColorInOut as stage_in,
-           uniforms: Uniform(0),
-           colorMap: texture2d<half>(0)) {
-
-  let colorSampler = sampler(mip_filter::linear,
-                             mag_filter::linear,
-                             min_filter::linear)
-
-  let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
-  
-  ^ float4(colorSample)
-}
-
-```
-(phong's vertex and fragment shaders are groupped, so accessing them, groupping them makes things simplier, syntax may change in the future)
 
 Struct example:
 
