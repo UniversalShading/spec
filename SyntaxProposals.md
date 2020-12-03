@@ -2,12 +2,6 @@
 
 ---
 
-#### Goals
-
-* Easy to read
-* Easy to write
-* Easy to remember
-
 Compiler is in progress, so this syntax may be changed over time. The whole language syntax and rules will be published later
 
 ---
@@ -15,6 +9,11 @@ Compiler is in progress, so this syntax may be changed over time. The whole lang
 Referenced Metal Shader (Vertex)
 
 ```metal
+typedef struct {
+  float3 position [[attribute(VertexAttributePosition)]];
+  float2 texCoord [[attribute(VertexAttributeTexcoord)]];
+} Vertex;
+
 vertex ColorInOut vertexShader(Vertex             in [[stage_in]],
                                constant Uniforms& uniforms [[ buffer(0) ]]) {
     ColorInOut out;
@@ -41,6 +40,20 @@ fragment float4 fragmentShader(ColorInOut         in [[stage_in]],
 
 USL (Universal Shading Language):
 ```Swift
+
+struct Vertex {
+  position: float3 @attribute(0);
+  texCoord: float2 @attribute(1);
+}
+
+/* alternative version which groups attributes and reduces attributes */
+struct Vertex {
+  @attributes {
+    position: float3(0);
+    texCoord: float2(1);
+  }
+}
+
 @vertex 
 vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) -> ColorInOut {
   var out = ColorInOut()
