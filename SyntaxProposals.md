@@ -10,8 +10,8 @@ Referenced Metal Shader (Vertex)
 
 ```metal
 typedef struct {
-  float3 position [[attribute(VertexAttributePosition)]];
-  float2 texCoord [[attribute(VertexAttributeTexcoord)]];
+  float3 position [[attribute(0)]];
+  float2 texCoord [[attribute(1)]];
 } Vertex;
 
 vertex ColorInOut vertexShader(Vertex             in [[stage_in]],
