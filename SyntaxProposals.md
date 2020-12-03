@@ -55,7 +55,8 @@ struct Vertex {
 }
 
 /* this syntax may be improved in the future */
-struct Vertex: apply @attribute {
+// struct Vertex: apply @attribute {
+struct(attribute) Vertex {
   position: float3(0);
   texCoord: float2(1);
 }
