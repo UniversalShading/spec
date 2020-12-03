@@ -42,13 +42,13 @@ USL (Universal Shading Language):
 ```Swift
 
 struct Vertex {
-  position: float3 @attribute(0);
-  texCoord: float2 @attribute(1);
+  position: float3 #attribute(0);
+  texCoord: float2 #attribute(1);
 }
 
 /* alternative version which groups attributes and reduces attributes */
 struct Vertex {
-  @attributes {
+  #attributes {
     position: float3(0);
     texCoord: float2(1);
   }
