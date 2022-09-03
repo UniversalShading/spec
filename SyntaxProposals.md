@@ -85,4 +85,41 @@ fragShader(in:       ColorInOut as stage_in,
 
 ```
 
+### new proposal
+
+```swift
+
+/* position is at 0, texCoord is at 1 */
+vertex Vertex {
+  position: float3;
+  texCoord: float2;
+}
+
+fn sum(a: float, b: float) -> float { 
+  return a + b
+}
+
+shader vertexShader(in: Vertex, uniforms: Uniform(0)) -> ColorInOut {
+  var out = ColorInOut()
+
+  let position = float4(in.position, 1.0)
+  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
+  out.texCoord = in.texCoord
+
+  return out 
+}
+
+shader fragShader(in:       ColorInOut as stage_in,
+                  uniforms: Uniform(0),
+                  colorMap: texture2d<half>(0)) -> float4 {
+
+  let colorSampler = sampler(.linear, linear, .linear)
+  let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
+  
+  return float4(colorSample)
+}
+
+
+```
+
 I'll update the syntax proposal over time.
