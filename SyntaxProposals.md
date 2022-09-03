@@ -99,6 +99,14 @@ fn sum(a: float, b: float) -> float { 
   return a + b
 }
 
+fn sum(a: float, b: float) -> float { 
+  a + b
+}
+
+fn sum(a: float, b: float) -> a + b
+
+fn sum<T>(a: T, b: T) -> a + b
+
 shader vertexShader(in: Vertex, uniforms: Uniform(0)) -> ColorInOut {
   var out = ColorInOut()
 
