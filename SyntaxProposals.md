@@ -39,51 +39,6 @@ fragment float4 fragmentShader(ColorInOut         in [[stage_in]],
 ```
 
 USL (Universal Shading Language):
-```Swift
-
-struct Vertex {
-  position: float3 @attribute(0);
-  texCoord: float2 @attribute(1);
-}
-
-/* alternative version which groups attributes and reduces attributes */
-struct Vertex {
-  @attributes {
-    position: float3(0);
-    texCoord: float2(1);
-  }
-}
-
-/* this syntax may be improved in the future */
-// struct Vertex: apply @attribute {
-struct(attribute) Vertex {
-  position: float3(0);
-  texCoord: float2(1);
-}
-
-@vertex 
-vertexShader(in: Vertex as stage_in, uniforms: Uniform(0)) -> ColorInOut {
-  var out = ColorInOut()
-  
-  let position = float4(in.position, 1.0)
-  out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position
-  out.texCoord = in.texCoord
-  
-  return out 
-}
-
-@fragment 
-fragShader(in:       ColorInOut as stage_in,
-           uniforms: Uniform(0),
-           colorMap: texture2d<half>(0)) -> float4 {
-
-  let colorSampler = sampler(.linear, linear, .linear)
-  let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
-  
-  return float4(colorSample)
-}
-
-```
 
 ### new proposal
 
