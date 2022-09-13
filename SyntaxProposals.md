@@ -89,6 +89,11 @@ fragShader(in:       ColorInOut as stage_in,
 
 ```swift
 
+struct ColorInOut {
+  position: float3 #position;
+  texCoord: float2;
+}
+
 /* position is at 0, texCoord is at 1 */
 vertex Vertex {
   position: float3;
