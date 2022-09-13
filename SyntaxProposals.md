@@ -107,7 +107,19 @@ fn sum(a: float, b: float) -> a + b
 
 fn sum<T>(a: T, b: T) -> a + b
 
-shader vertexShader(in: Vertex, uniforms: Uniform(0)) -> ColorInOut {
+kern computeShader() -> float4 {
+
+}
+
+vert vertexShader(in: Vertex) -> VertexOut {
+
+}
+
+frag fragmentShader() -> float4 {
+
+}
+
+vert vertexShader(in: Vertex, uniforms: Uniform(0)) -> ColorInOut {
   var out = ColorInOut()
 
   let position = float4(in.position, 1.0)
@@ -117,9 +129,9 @@ shader vertexShader(in: Vertex, uniforms: Uniform(0)) -> ColorInOut {
   return out 
 }
 
-shader fragShader(in:       ColorInOut as stage_in,
-                  uniforms: Uniform(0),
-                  colorMap: texture2d<half>(0)) -> float4 {
+frag fragShader(in:       ColorInOut as stage_in,
+                uniforms: Uniform(0),
+                colorMap: texture2d<half>(0)) -> float4 {
 
   let colorSampler = sampler(.linear, linear, .linear)
   let colorSample  = colorMap.sample(colorSampler, in.texCoord.xy)
