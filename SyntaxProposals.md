@@ -67,6 +67,8 @@ fn sum(a: float, b: float) -> a + b
 
 fn sum<T>(a: T, b: T) -> a + b
 
+fn sum<T>(a, b) -> a + b
+
 kern computeShader() -> float4 {
 
 }
