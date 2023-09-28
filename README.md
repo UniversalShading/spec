@@ -23,6 +23,7 @@ Shader caching will also be provided by utilities or Database. Shaders can also 
 * Shader caching will be provided with a library
 * Shader library will be supported
 * Lot of utilities, mixins, tools, documentations....... will be provided
+* Provide/Generate enough information about static samplers like Metal after compilation of USL to allow creating implicit root signature or implicit parameters of root signature for pipeline
 * ...
 
 ## Proposals
